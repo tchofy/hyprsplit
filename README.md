@@ -107,3 +107,18 @@ hl.bind("SUPER + " .. "g", hs.dsp.grab_rogue_windows())
 hl.bind("SUPER + " .. "d", hs.dsp.workspace.swap_monitors({ monitor1 = "current", monitor2 = "+1" }))
 
 ```
+### For 10 workspaces
+```lua
+local hs = require("hyprsplit")
+hs.config({ num_workspaces = 10 })
+-- Since key 10 is invalid, we map it to 0 instead
+for i = 1, 10 do
+    local key = (i == 10) and "0" or i
+
+    hl.bind("SUPER + " .. key, hs.dsp.focus({ workspace = i }))
+    hl.bind("SUPER + SHIFT + " .. key, hs.dsp.window.move({ workspace = i, follow = false }))
+end
+
+hl.bind("SUPER + " .. "g", hs.dsp.grab_rogue_windows())
+hl.bind("SUPER + " .. "d", hs.dsp.workspace.swap_monitors({ monitor1 = "current", monitor2 = "+1" }))
+```
